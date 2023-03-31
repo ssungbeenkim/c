@@ -16,7 +16,7 @@ int main(void)
   double cost = 34.567;// 실수 // 8byte
 
   printf("\n");
-  printf("구구단은 %d 학년 때 외워요.\n",grade); // %d에 3이 들어감 
+  printf("구구단은 %d 학년 때 외워요.\n",grade); // %d(decimal. 정수형 출력)에 3이 들어감 
   printf("알파벳은 %c입니다.\n",Letter);
   printf("용돈은 달러로 %5.2f입니다.\n",cost); // 5자리, 소숫점 이하 2자리이하 반올림
   printf("용돈은 달러로 %10.2f입니다.\n",cost); //용돈은 달러로      34.57입니다.
