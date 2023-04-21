@@ -13,6 +13,8 @@ int main(void)
   int grade = 3; // int:정수형 grade:변수 // 4byte
   char Letter = 'Y'; // 문자 '' 따옴표를 넣어야 한다. // 1byte 8bit 문자열은 ""
   double cost = 34.567;// 실수 // 8byte
+  // int는 4byte, char는 1byte, double은 8byte
+
 
   printf("\n"); 
   // 서식문자 %d: 정수형, %c: 문자형, %f: 실수형, %g: 실수형
