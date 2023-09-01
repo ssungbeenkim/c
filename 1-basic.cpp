@@ -41,5 +41,10 @@ int main(void)
     printf("10입니다\n");
   }
   else printf("꽝입니다.");
+
+  if(num == 10) // == 비교연산자
+    printf("당첨입니다\n"); // if문에 해당하는 것은 중괄호 쓰지 않으면 바로 아래 한줄만 해당하게 된다. 
+    printf("10입니다\n");
+  
   return 0; // 프로그램 종료. 
 }

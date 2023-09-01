@@ -21,7 +21,7 @@ int main()
   char m = 'A';
 
   printf("%d\n", k); //50
-  printf("%d\n", sizeof(n)); //4  byte가 출력된다. 
+  printf("%d\n", sizeof(n)); //4  -> byte가 출력된다. 
   printf("%c\n", m); // A
   printf("%d\n", sizeof(m)); //1
 
