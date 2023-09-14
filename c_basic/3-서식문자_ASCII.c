@@ -2,6 +2,10 @@
 연산 가능 구역
 서식문자에 대해 알아본다. 
 아스키가 7비트인 이유는 데이터를 보낼 때 받는 쪽에서 맞게 온건지 확인할 때 쓰는 패리티 비트가 있어서 그렇다. 
+printf 함수나 scanf 같은 입출력함수를 
+쓸때 서식문자를 이용해 입출력형태를 지정해주고,
+콤마(,)를 이용해서 변수나 식으로 값을
+넣어줄수 있다. 
 */
 
 #include <stdio.h>
@@ -21,7 +25,7 @@ int main()
   char m = 'A';
 
   printf("%d\n", k); //50
-  printf("%d\n", sizeof(n)); //4  -> byte가 출력된다. 
+  printf("%d\n", sizeof(n)); //4  -> sizeof()자료형의 크기를 알려주는 함수. int는 4바이트
   printf("%c\n", m); // A
   printf("%d\n", sizeof(m)); //1
 
@@ -30,7 +34,7 @@ int main()
   int b = 20;
   printf("%d %d\n", a,b);
 
-// 매개변수가 필요하다. 
+// 변수의 값을 교환하려면 매개변수가 필요하다. 
   int t = a;
   printf("%d %d %d\n", a,b,t);
   a = b;
@@ -38,10 +42,11 @@ int main()
   b = t;
   printf("%d %d %d\n", a,b,t);
   
-  printf("%d %c \n", 65, 65) ;
-  printf("%d %c \n", 'a', 'a');
-  
-
+// ASCII
+  printf("%d %c \n", 65, 65) ; // 65 A
+  printf("%d %c \n", 'a', 'a') ; // 97 a
+  printf("%c\n", 97); // a 
+  printf("%d\n", 'a'); // 97
 
   return 0;
 }
