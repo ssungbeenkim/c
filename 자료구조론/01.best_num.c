@@ -1,10 +1,13 @@
+/* 입력을 받아 간단한 조건문으로 최대값을 출력하는 코드 */
+
+
 #include <stdio.h>
 
 int main(void)
 {
   int a, b, c;
 
-  printf("세 정수의 최대값을 구합니다.\n");
+  printf("세 정수중 최대값을 구합니다.\n");
   printf("a의 값: "); scanf("%d", &a); // scanf: 키보드로 입력받는 함수
   printf("b의 값: "); scanf("%d", &b);
   printf("c의 값: "); scanf("%d", &c);
