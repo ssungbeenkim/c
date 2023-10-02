@@ -1,12 +1,29 @@
 #include <stdio.h>
 
+/* 
+& : 주소 연산자로서 변수의 주소를 알아내는 연산자
+* : 참조 연산자로서 포인터 변수가 가리키는 변수의 값을 알아내는 연산자
+ */
+
+// int main() {
+//   int i;
+//   int *ptr = &i;
+//   i = 10;
+//   printf("%d\n", *ptr); // 10
+//   printf("%d\n", ptr); // 6422284
+//   printf("%d\n", i); // 10
+//   printf("%d\n", &i); // 6422284
+//   return 0;
+//   }
+
+
 void main() {
 	char* ptrArray[2];
 	char** ptrptr;
 	int i;
 
 	ptrArray[0] = "Korea";
-	ptrArray[1] = "Seoul";
+	ptrArray[1] = "Seoul"; 
 
 	ptrptr = ptrArray;
 	printf("\n ptrArray[0]의 주소 (&ptrArray[0]) = %u", &ptrArray[0]);
