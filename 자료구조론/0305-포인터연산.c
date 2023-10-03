@@ -3,11 +3,13 @@
 void main() {
 	int i;
 	char string1[20] = "Dreams come true!", string2[20], * ptr1, * ptr2;
-
 	ptr1 = string1;
-	printf("\n string1의 주소 = %u \t ptr1 = %u", string1, ptr1);
-	printf("\n string1 = %s \n ptr1 = %s", string1, ptr1);
+
+	printf("\n string1의 주소 = %u \t ptr1 = %u", string1, ptr1); // 같은 값이다. 
+	printf("\n string1 = %s \n ptr1 = %s", string1, ptr1); // 포인터가 참조하고 있는 문자열 값이 출력된다. 
+
 	printf("\n\n %s", ptr1 + 7); // come true!
+
 	ptr2 = &string1[7]; // 
 	printf("\n %s \n\n ", ptr2); // come true! 
 
