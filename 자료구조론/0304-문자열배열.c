@@ -9,7 +9,7 @@ int main() {
     char str[50];
     printf("문자열을 입력하세요 : ");
     // gets(str);  // 문자열을 입력받아 str에 저장. 
-    fgets(str, sizeof(str), stdin); // gets는 보안상의 문제로 인해 사용을 권장하지 않음
+    fgets(str, sizeof(str), stdin); // *gets는 보안상의 문제로 인해 사용을 권장하지 않음
     printf("입력한 문자열은 \"");
     for (i = 0; str[i]; i++) {
       printf("%c", str[i]);

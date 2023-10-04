@@ -1,9 +1,10 @@
 #include <stdio.h>
 
 int main() {
-  int arr[2][3][4];
+  int arr[2][3][4]; // 3차원 배열 선언
   int i,j,k, value = 1;
-  for (i = 0; i < 2; i++) {
+  // 3중 for문을 이용하여 3차원 배열에 값 대입
+  for (i = 0; i < 2; i++) { 
     for (j = 0; j < 3; j++){
       for (k = 0; k < 4; k++){
         arr[i][j][k] = value;
@@ -12,5 +13,6 @@ int main() {
       }
     }
   }
+  
   return 0;
   }
