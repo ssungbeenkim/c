@@ -1,27 +1,28 @@
+
 #include <stdio.h>
-
-/* 
-& : 주소 연산자로서 변수의 주소를 알아내는 연산자
-* : 참조 연산자로서 포인터 저장된 주소에 있는 값을 엑세스하는 연산자 
-
-
-
- */
-
 
 
 void main() {
-	char* ptrArray[2]; // 포인터 배열
-	char** ptrptr; // 이중 포인터 
 	int i;
+	char* ptrArray[4] = {{ "Dreams" }, { "come" }, { "true!" }, { "!" }};
+	for(i = 0; i < 4; i++) {
+		printf("%s\n", ptrArray[i]);
+	}
 
-	printf()
+	ptrArray[0] = "Peace";
 
-	ptrArray[0] = "Korea"; 
-	ptrArray[1] = "Seoul"; 
+	for(i = 0; i < 4; i++) {
+		printf("%s\n", ptrArray[i]);
+	}
 
-	ptrptr = ptrArray;
-
-
-return 0;
+	getchar();
 }
+
+/* 
+배열은 그 자체로 포인터의 의미를 가진다. 
+배열의 이름은 배열의 첫번째 요소의 주소를 가리키고 있기 때문에 주소를 저장하는것이나 마찬가지이기 때문
+
+포인터 배열 
+여러개의 포인터를 하나의 배열로 구성. 
+배열의 특징과 포인터의 특징을 모두 활용할 수 있다. 
+ */
