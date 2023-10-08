@@ -1,4 +1,4 @@
-#include <stdio.h> 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -19,5 +19,5 @@ int main(void) {
   return 0;
 }
 
-/* 구조체는 설계의 측면에서 의미가 있다. 
+/* 구조체는 설계의 측면에서 의미가 있다.
 객체지향 프로그래밍에서의 클래스의 모체라고 볼 수 있음 */
