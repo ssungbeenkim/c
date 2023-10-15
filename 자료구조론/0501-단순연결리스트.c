@@ -26,10 +26,10 @@ linkedList_h* createLinkedList_h(void) {
 void freeLinkedList_h(linkedList_h* L) {
   listNode* p;
   while (L->head != NULL) {
-    p = L->head;
-    L->head = L->head->link;
-    free(p);
-    p = NULL;
+    p = L->head;              // head가 가리키는 노드를 p에 할당
+    L->head = L->head->link;  // head를 다음 노드로 변경
+    free(p);                  // 첫번째 노드의 동적 메모리 해제
+    p = NULL;                 //?
   }
 }
 
@@ -55,37 +55,39 @@ void insertFirstNode(linkedList_h* L, char* x) {
   L->head = newNode;
 }
 
-// 첫 번째 노드로 삽입
+// pre 뒤에 노드를 삽입하는 연산
 void insertMiddleNode(linkedList_h* L, listNode* pre, char* x) {
   listNode* newNode;
   newNode = (listNode*)malloc(sizeof(listNode));
   strcpy(newNode->data, x);
-  if (L->head == NULL) {  // 공백 리스트인 경우
-    newNode->link = NULL;  // 새 노드를 첫 번째이자 마지막 노드로 연결
+  if (L->head == NULL) {  // 공백 리스트인 경우 만든 노드를 넣어줌
+    newNode->link = NULL;
     L->head = newNode;
-  } else if (pre == NULL) {
+  } else if (pre == NULL) {  // pre가 NULL인 경우 첫 번째 노드로 삽입
     newNode->link = L->head;
     L->head = newNode;
   } else {
-    newNode->link = pre->link;
-    pre->link = newNode;
+    newNode->link = pre->link;  // 새 노드를 pre의 다음 노드로 연결
+    pre->link = newNode;        // predml 다음 값으로 새 노드를 연결.
   }
 }
 
+// 마지막 노드로 삽입하는 연산
 void insertLastNode(linkedList_h* L, char* x) {
   listNode* newNode;
   listNode* temp;
   newNode = (listNode*)malloc(sizeof(listNode));
   strcpy(newNode->data, x);
   newNode->link = NULL;
-  if (L->head == NULL) {
+  if (L->head ==
+      NULL) {  // 공백 리스트의 경우 만들어진 새 노드를 첫 번째 노드로 연결
     L->head = newNode;
     return;
   }
-
   temp = L->head;
   while (temp->link != NULL) temp = temp->link;
-  temp->link = newNode;
+  //  temp는 결국 마지막 노드를 가리키게 됨
+  temp->link = newNode;  // 마지막 노드에 새 노드를 연결
 }
 
 int main(void) {
@@ -104,6 +106,10 @@ int main(void) {
 
   printf("\n(4) 리스트 첫 번째에 [월]노드 삽입 \n");
   insertFirstNode(L, "월");
+  printList(L);
+
+  printf("\n(5) 리스트의 두번째 값으로 [화] 노드 삽입 \n");
+  insertMiddleNode(L, L->head, "화");
   printList(L);
 
   printf("\n(5) 리스트 공간을 해제하여 공백 리스트로 만들기 \n");

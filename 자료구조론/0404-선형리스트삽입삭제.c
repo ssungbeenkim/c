@@ -1,4 +1,4 @@
-/* 강의에서는 vs 사용해서 헤더파일 포함했는데 일단 합쳐서 했더니 실행가능함. */
+// 원소를 하나씩 삽입하고 삭제하는 선형 리스트
 
 #include <stdio.h>
 
@@ -9,22 +9,22 @@ int insertElement(int L[], int n, int x) {
   // 원소의 크기를 비교하여 삽입 위치 k 찿기
   for (i = 0; i < n; i++) {
     if (L[i] <= x && x <= L[i + 1]) {
-      k = i + 1;
+      k = i + 1;  // 1 2 3 4 5 ,3
       break;
     }
   }
-  if (i == n) {  // 삽입 원소가 가장 큰 원소인 경우
+  if (i == n) {  // 삽입 원소가 가장 큰 원소인 경우 마지막에 들어가면 된다.
     k = n;
   }
 
   // 마지막 원소부터 k+1원소까지 뒤로 자리이동
   for (i = n; i > k; i--) {
-    L[i] = L[i - 1];
+    L[i] = L[i - 1];  // 하나씩 미룬다.
     move++;
   }
 
-  L[k] = x;
-  return move;
+  L[k] = x;     // k번짜 자리에 x를 삽입
+  return move;  // 자리이동 횟수 리턴
 }
 
 int deleteElement(int L[], int n, int x) {

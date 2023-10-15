@@ -1,4 +1,4 @@
-// 희소행렬의 전치 연산하기
+// 희소행렬의 전치 연산
 #include <stdio.h>
 
 typedef struct {
@@ -9,17 +9,19 @@ typedef struct {
 // typedef: 구조체를 정의할 때 struct 키워드를 생략할 수 있게 해준다.
 
 void smTranspose(term a[], term b[]) {
-  int m, n, v, i, j, p;
-  m = a[0].row;    // 희소 행렬 a의 행 개수
-  n = a[0].col;    // 희소 행렬 a의 열 개수
+  int r, c, v, i, j, p;
+  r = a[0].row;    // 희소 행렬 a의 행 개수
+  c = a[0].col;    // 희소 행렬 a의 열 개수
   v = a[0].value;  // 희소 행렬 a에서 0이 아닌 원소의 개수
-  b[0].row = n;    // 전치 행렬 b의 행 수
-  b[0].col = m;    // 전치 행렬 b의 열 수
-  b[0].value = v;  // 전치 행렬 b의 원소 수
-  if (v > 0) {     // 0이 아닌 원소가 있는 경우에만 전치
+  b[0].row = c;    // 전치 행렬 b의 행 개수
+  b[0].col = r;    // 전치 행렬 b의 열 개수
+  b[0].value = v;  // 전치 행렬 b의 원소 개수
+  if (v > 0) {  // 0이 아닌 원소가 하나도 없다면 전치가 불가하므로
+    // p를 1부터 증가시키면서 희소행렬 a의 원소를 돌며 열 번호 0인 것부터 차례로
+    // 전치 행렬 b에 삽입
     p = 1;
-    for (i = 0; i < n; i++)     // 전치 행렬 b의 열 번호
-      for (j = 1; j <= v; j++)  // 전치 행렬 b의 행 번호
+    for (i = 0; i < c; i++)     // 전치 행렬 b의 열 번호
+      for (j = 1; j <= v; j++)  // 희소 행렬 a의 원소 인덱스
         if (a[j].col == i) {  // 현재의 열에 속하는 원소가 있으면 b[]에 삽입
           b[p].row = a[j].col;
           b[p].col = a[j].row;

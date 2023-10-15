@@ -1,10 +1,10 @@
+// 다항식의 선형 리스트 표현과 덧셈 연산
 #include <stdio.h>
 #define MAX(a, b) ((a > b) ? a : b)
 #define MAX_DEGREE 50
 
 typedef struct {
   int degree;
-
   float coef[MAX_DEGREE];
 
 } polynomial;
@@ -17,14 +17,14 @@ polynomial addPoly(polynomial A, polynomial B) {
   C.degree = MAX(A.degree, B.degree);
 
   while (A_index <= A.degree && B_index <= B.degree) {
-    if (A_degree > B_degree) {
+    if (A_degree > B_degree) {  // A의 차수가 더 높은 경우
       C.coef[C_index++] = A.coef[A_index++];
       A_degree--;
-    } else if (A_degree == B_degree) {
+    } else if (A_degree == B_degree) {  // A, B의 차수가 같은 경우
       C.coef[C_index++] = A.coef[A_index++] + B.coef[B_index++];
       A_degree--;
       B_degree--;
-    } else {
+    } else {  // B의 차수가 더 높은 경우
       C.coef[C_index++] = B.coef[B_index++];
       B_degree--;
     }
