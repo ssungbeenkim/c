@@ -11,10 +11,9 @@ void main() {
   printf("\n string1의 주소 = %u \t ptr1의 값 = %u", string1, ptr1);
   // 같은 값이다.
   printf("\n string1 = %s \n ptr1 = %s", string1, ptr1);
-  // 포인터가 참조하고 있는 문자열 값이 출력된다.
-  // printf("\n string1 = %s \n ptr1 = %s", string1, *ptr1); // 이건 안됨
+  // 같은 문자열 출력. 포인터가 참조하고 있는 문자열 값이 출력된다.
 
-  printf("\n\n %s", ptr1 + 7);  // come true!
+  printf("\n\n %s", ptr1 + 7);  // come true! 8번째 문자부터 출력됨
 
   ptr2 = &string1[7];  // [7]번째 주소를 ptr2에 저장. printf로 출력하면 해당
                        // 주소의 값부터 문자열의 끝까지 출력된다.
@@ -29,7 +28,7 @@ void main() {
   printf("\n\n string1 = %s", string1);
   printf("\n string2 = %s", string2);
 
-  // string1의 문자열을 포인터로 접근해서 변경한다.
+  // string1의 문자를 포인터로 접근해서 변경한다.
   *ptr1 = 'P';
   *(ptr1 + 1) = 'e';
   *(ptr1 + 2) = 'a';

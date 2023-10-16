@@ -1,3 +1,5 @@
+// 포인터 연산 https://www.tcpschool.com/c/c_pointer_calculation
+
 // 2차원 배열의 논리적, 물리적 순서 확인
 #include <stdio.h>
 

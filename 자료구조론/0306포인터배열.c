@@ -6,6 +6,7 @@ void main() {
   char* ptrArray[4] = {{"Dreams"}, {"come"}, {"true!"}, {"!"}};
   for (i = 0; i < 4; i++) {
     printf("%s\n", ptrArray[i]);
+    printf("%u\n", &ptrArray[i]);  // 8씩 증가: 포인터가 저장하는 주소의 크기
   }
 
   ptrArray[0] = "Peace";

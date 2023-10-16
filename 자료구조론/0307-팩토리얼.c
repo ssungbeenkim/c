@@ -11,6 +11,7 @@ int main() {
   getchar();
 }
 
+// 재귀적으로 팩토리얼을 구한다.
 long int fact(int n) {
   if (n <= 1) {
     printf("\n fact(1) 함수 호출");
