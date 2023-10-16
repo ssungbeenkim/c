@@ -122,7 +122,7 @@ void reverse(linkedList_h* L) {
 
   p = L->head;
   q = NULL;
-  r = NULL;
+  // r = NULL; // 없어도 됨
 
   while (p != NULL) {  // *
     r = q;
