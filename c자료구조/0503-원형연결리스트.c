@@ -1,129 +1,113 @@
-#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-typedef struct ListNode {
-  char data[4];
-  struct ListNode* link;
-} listNode;
+// 노드 구조체 정의
+typedef struct Node {
+  int data;
+  struct Node* next;
+} Node;
 
-typedef struct {
-  listNode* head;
-} linkedList_h;
+// 원형 연결 리스트 구조체 정의
+typedef struct CircularLinkedList {
+  Node* head;
+} CircularLinkedList;
 
-linkedList_h* createLinkedList_h(void) {
-  linkedList_h* CL;
-  CL = (linkedList_h*)malloc(sizeof(linkedList_h));
-  CL->head = NULL;
-  return CL;
-}
+// 원형 연결 리스트 초기화 함수
+void initialize(CircularLinkedList* list) { list->head = NULL; }
 
-void printList(linkedList_h* CL) {
-  listNode* p;
-  printf("CL = (");
-  p = CL->head;
+// 노드 추가 함수
+void append(CircularLinkedList* list, int data) {
+  Node* newNode = (Node*)malloc(sizeof(Node));
+  newNode->data = data;
 
-  if (p == NULL) {  // 첫 요소일 경우
-    printf(")\n");
-    return;
-  }
-  do {
-    printf("%s", p->data);
-    p = p->link;
-    if (p != CL->head) printf(", ");
-  } while (p != CL->head);
-  printf(")\n");
-}
-
-void insertFirstNode(linkedList_h* CL, char* x) {
-  listNode *newNode, *temp;
-  newNode = (listNode*)malloc(sizeof(listNode));
-  strcpy(newNode->data, x);
-  if (CL->head == NULL) {
-    CL->head = newNode;
-    newNode->link = newNode;
+  if (list->head == NULL) {
+    newNode->next = newNode;  // 자기 자신을 가리킴
+    list->head = newNode;
   } else {
-    temp = CL->head;
-    while (temp->link != CL->head) temp = temp->link;
-    newNode->link = temp->link;
-    temp->link = newNode;
-    CL->head = newNode;
-  }
-}
-
-void insertMiddleNode(linkedList_h* CL, listNode* pre, char* x) {
-  listNode* newNode;
-  newNode = (listNode*)malloc(sizeof(listNode));
-  strcpy(newNode->data, x);
-  if (CL->head == NULL) {
-    CL->head = newNode;
-    newNode->link = newNode;
-  } else {
-    newNode->link = pre->link;
-    pre->link = newNode;
-  }
-}
-
-void deleteNode(linkedList_h* CL, listNode* old) {
-  listNode* pre;
-  if (CL->head == NULL) return;
-  if (CL->head->link == CL->head) {
-    free(CL->head);
-    CL->head = NULL;
-    return;
-  } else if (old == NULL)
-    return;
-  else {
-    pre = CL->head;
-    while (pre->link != old) {
-      pre = pre->link;
+    Node* current = list->head;
+    while (current->next != list->head) {
+      current = current->next;
     }
-    pre->link = old->link;
-    if (old == CL->head) CL->head = old->link;
-    free(old);
+    current->next = newNode;
+    newNode->next = list->head;
   }
 }
 
-listNode* searchNode(linkedList_h* CL, char* x) {
-  listNode* temp;
-  temp = CL->head;
-  if (temp == NULL) return NULL;
+// 노드 삭제 함수
+void removeNode(CircularLinkedList* list, int data) {
+  if (list->head == NULL) {
+    return;
+  }
+
+  Node* current = list->head;
+  Node* prev = NULL;
   do {
-    if (strcmp(temp->data, x) == 0)
-      return temp;
-    else
-      temp = temp->link;
-  } while (temp != CL->head);
-  return NULL;
+    if (current->data == data) {
+      if (prev == NULL) {  // 첫 번째 노드를 삭제
+        Node* last = list->head;
+        while (last->next != list->head) {
+          last = last->next;
+        }
+        last->next = current->next;
+        list->head = current->next;
+      } else {
+        prev->next = current->next;
+      }
+      free(current);
+      return;
+    }
+    prev = current;
+    current = current->next;
+  } while (current != list->head);
 }
 
-int main(void) {
-  linkedList_h* CL;
-  listNode* p;
+// 원형 연결 리스트 출력 함수
+void display(CircularLinkedList* list) {
+  if (list->head == NULL) {
+    printf("리스트가 비어 있습니다.\n");
+    return;
+  }
 
-  CL = createLinkedList_h();
-  printf("(1) 원형 연결 리스트 생성!\n");
-  printList(CL);
+  Node* current = list->head;
+  printf("리스트의 요소: ");
+  do {
+    printf("%d ", current->data);
+    current = current->next;
+  } while (current != list->head);
+  printf("\n");
+}
 
-  printf("\n(2) 원형 연결 리스트에 [첫] 삽입!\n");
-  insertFirstNode(CL, "첫");
-  printList(CL);
+// 메모리 해제 함수
+void destroy(CircularLinkedList* list) {
+  if (list->head == NULL) {
+    return;
+  }
 
-  printf("\n(3) 원형 연결 리스트에 [첫] 다음에 [두] 삽입!\n");
-  p = searchNode(CL, "첫");
-  insertMiddleNode(CL, p, "두");
-  printList(CL);
+  Node* current = list->head;
+  while (current->next != list->head) {
+    Node* temp = current;
+    current = current->next;
+    free(temp);
+  }
+  free(current);
+  list->head = NULL;
+}
 
-  printf("\n(4) 원형 연결 리스트에 [두] 다음에 [세] 삽입!\n");
-  p = searchNode(CL, "두");
-  insertMiddleNode(CL, p, "세");
-  printList(CL);
+int main() {
+  CircularLinkedList list;
+  initialize(&list);
 
-  printf("\n(5) 원형 연결 리스트에서 [두] 삭제!\n");
-  p = searchNode(CL, "두");
-  deleteNode(CL, p);
-  printList(CL);
-  getchar();
+  append(&list, 1);
+  append(&list, 2);
+  append(&list, 3);
+
+  display(&list);
+
+  removeNode(&list, 2);
+
+  display(&list);
+
+  destroy(&list);
+
   return 0;
 }
