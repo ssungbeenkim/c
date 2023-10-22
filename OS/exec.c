@@ -15,19 +15,18 @@ PCB의 PPID, CPID, UID, GID, SID, TTY, NICE, SIGNAL, FD, UMASK 등의 정보는 
 int main() {
   int pid;
 
-  pid = fork();  // fork() 함수를 호출하면 현재 프로세스와 동일한 내용의 자식
-                 // 프로세스를 생성
+  pid = fork();
 
   if (pid < 0) {
     printf("Error");
     exit(-1);
   } else if (pid == 0) {
     printf("Child process");
-    execl("mplayer", "mplayer", NULL);
-    exit(0);
+    execl("/bin/ls", "ls", "-al", NULL);
+    printf("This line should not be printed");
   } else {
-    wait(NULL);  // 자식 프로세스가 종료될 때까지 기다린다.
-    printf("mplayer Terminated");
+    wait(NULL)  // 자식 프로세스가 종료될 때까지 기다린다.
+        printf("Parent process");
     exit(0);
   }
 

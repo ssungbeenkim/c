@@ -9,7 +9,8 @@ int main() {
 
   if (pid < 0) {
     printf("Error");
-    exit(-1);
+    exit(-1);  // exit() 함수는 프로세스를 종료한다. 전달인자로 전달된 값은 종료
+               // 상태를 나타낸다.
   } else if (pid == 0) {
     printf("Child process");
     exit(0);
